@@ -13,42 +13,55 @@ class Match:
         self.result1= (self.p2_wins)-(self.p2_wins)
 
     def score(self):
+        lista=[self.p1_wins,self.p2_wins]
+        lista1=[]
+        lisreturn=[lista,lista1]
         if self.p1_wins == 0 and self.p2_wins == 0:
-            return "{0} j1 and j2 {1} | 0-0".format(self.p1, self.p2)
+            return lista
 
         if self.sets == 3:
 
             if (result==2):
-                return "{0} defeated {1} | {2}, {3}".format(self.p1, self.p2, self.p1_sets[0], self.p1_sets[1])
+                lista1=[self.p1_sets[0], self.p1_sets[1]]
+                return lisreturn
             if (result== 1):
-                return "{0} defeated {1} | {2}, {3}, {4}".format(self.p1, self.p2, self.p1_sets[0], self.p1_sets[1], self.p1_sets[2])
+                lista1=[self.p1_sets[0], self.p1_sets[1], self.p1_sets[2]]
+                return lisreturn
             if (result1== 2):
-                return "{0} defeated {1} | {2}, {3}".format(self.p2, self.p1, self.p2_sets[0], self.p2_sets[1])
+                lista1=[self.p2_sets[0], self.p2_sets[1]]
+                return lisreturn
             if (result1 == 1):
-                return "{0} defeated {1} | {2}, {3}, {4}".format(self.p2, self.p1, self.p2_sets[0], self.p2_sets[1], self.p2_sets[2])
+                lista1=[self.p2_sets[0], self.p2_sets[1], self.p2_sets[2]]
+                return lisreturn
 
         elif self.sets == 5:
             if (result == 3):
-                return "{0} defeated {1} | {2}, {3}, {4}".format(self.p1, self.p2, self.p1_sets[0], self.p1_sets[1], self.p1_sets[2])
+                lista1=[self.p1_sets[0], self.p1_sets[1], self.p1_sets[2]]
+                return lisreturn
             if (result == 2):
-                return "{0} defeated {1} | {2}, {3}, {4}, {5}".format(self.p1, self.p2, self.p1_sets[0], self.p1_sets[1], self.p1_sets[2], self.p1_sets[3])
+                lista1=[self.p1_sets[0], self.p1_sets[1], self.p1_sets[2], self.p1_sets[3]]
+                return lisreturn
             if (result == 1):
-                return "{0} defeated {1} | {2}, {3}, {4}, {5}, {6}".format(self.p1, self.p2, self.p1_sets[0], self.p1_sets[1], self.p1_sets[2], self.p1_sets[3], self.p1_sets[4])
-
+                lista1=[self.p1_sets[0], self.p1_sets[1], self.p1_sets[2], self.p1_sets[3], self.p1_sets[4]]
+                return lisreturn 
             if (result1 == 3):
-                return "{0} defeated {1} | {2}, {3}, {4}".format(self.p2, self.p1, self.p2_sets[0], self.p2_sets[1], self.p2_sets[2])
+                lista1=[self.p2_sets[0], self.p2_sets[1], self.p2_sets[2]]
+                return lisreturn
             if (result1 == 2):
-                return "{0} defeated {1} | {2}, {3}, {4}, {5}".format(self.p2, self.p1, self.p2_sets[0], self.p2_sets[1], self.p2_sets[2], self.p2_sets[3])
+                lista1=[self.p2_sets[0], self.p2_sets[1], self.p2_sets[2], self.p2_sets[3]]
+                return lisreturn
             if (result1 == 1):
-                return "{0} defeated {1} | {2}, {3}, {4}, {5}, {6}".format(self.p2, self.p1, self.p2_sets[0], self.p2_sets[1], self.p2_sets[2], self.p2_sets[3], self.p2_sets[4])
+                lista1=[self.p2_sets[0], self.p2_sets[1], self.p2_sets[2], self.p2_sets[3], self.p2_sets[4]]
+                return lisreturn
 
     def winer(self, jugador, set_num, points1, points2):
+        ganador=1
         if self.p1 == jugador:
-            self.p1_wins = self.p1_wins + 1
+            self.p1_wins = self.p1_wins + ganador
             self.p1_sets[set_num - 1] = points1 + '-' + points2
             self.p2_sets[set_num - 1] = points2 + '-' + points1
 
         else:
-            self.p2_wins = self.p2_wins + 1
+            self.p2_wins = self.p2_wins + ganador
             self.p2_sets[set_num - 1] = points1 + '-' + points2
             self.p1_sets[set_num - 1] = points2 + '-' + points1
