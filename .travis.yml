@@ -1,10 +1,12 @@
-lenguage: python
+language: python
 python:
-	-"2.7"
-#Command to install dependencies
+  - "2.7"
+# command to install dependencies
 install: "pip install -r requirements.txt"
-before_script:
-	- "flake8 --ignore=F403 app tests "
-#Commando para correr el test
-script:
-	- nosetest --with-doctest --with-coverage -s app
+before_script: 
+  - "flake8 --ignore=F403 app tests "
+# command to run tests
+script: 
+  - nosetests --with-doctest --with-coverage -s app
+
+
