@@ -1,46 +1,67 @@
 # -*- coding: utf-8 -*-
 class Match:
 
-    def __init__(self, p1, p2, pacted_sets):
-        self.p1 = p1
-        self.p2 = p2
-        self.pacted_sets = pacted_sets
-        self.count_p1 = 0
-        self.count_p2 = 0
-        self.score_p1 = ['', '', '', '', '']
-        self.score_p2 = ['', '', '', '', '']
-        self.points = ""
+    def __init__(self, j1, j2, sets):
+        self.p1 = j1
+        self.p2 = j2
+        self.sets = sets
+        self.p1_wins = 0
+        self.p2_wins = 0
+        self.p1_sets = ['', '', '', '', '']
+        self.p2_sets = ['', '', '', '', '']
+        self.result= (self.p1_wins)-(self.p2_wins)
+        self.result1= (self.p2_wins)-(self.p2_wins)
 
-    def show_score(self):
-        if self.count_p1 == 0 and self.count_p2 == 0:
-            return "{0} plays with {1} | 0-0".format(self.p1, self.p2)
-        elif self.count_p1 > self.count_p2:
-            return "{0} defeated {1} | {2}".format(self.p1, self.p2, self.get_points(self.p1))
+    def score(self):
+        lista=[self.p1_wins,self.p2_wins]
+        lista1=[]
+        lisreturn=[lista,lista1]
+        if self.p1_wins == 0 and self.p2_wins == 0:
+            return lista
+
+        if self.sets == 3:
+
+            if (result==2):
+                lista1=[self.p1_sets[0], self.p1_sets[1]]
+                return lisreturn
+            if (result== 1):
+                lista1=[self.p1_sets[0], self.p1_sets[1], self.p1_sets[2]]
+                return lisreturn
+            if (result1== 2):
+                lista1=[self.p2_sets[0], self.p2_sets[1]]
+                return lisreturn
+            if (result1 == 1):
+                lista1=[self.p2_sets[0], self.p2_sets[1], self.p2_sets[2]]
+                return lisreturn
+
+        elif self.sets == 5:
+            if (result == 3):
+                lista1=[self.p1_sets[0], self.p1_sets[1], self.p1_sets[2]]
+                return lisreturn
+            if (result == 2):
+                lista1=[self.p1_sets[0], self.p1_sets[1], self.p1_sets[2], self.p1_sets[3]]
+                return lisreturn
+            if (result == 1):
+                lista1=[self.p1_sets[0], self.p1_sets[1], self.p1_sets[2], self.p1_sets[3], self.p1_sets[4]]
+                return lisreturn 
+            if (result1 == 3):
+                lista1=[self.p2_sets[0], self.p2_sets[1], self.p2_sets[2]]
+                return lisreturn
+            if (result1 == 2):
+                lista1=[self.p2_sets[0], self.p2_sets[1], self.p2_sets[2], self.p2_sets[3]]
+                return lisreturn
+            if (result1 == 1):
+                lista1=[self.p2_sets[0], self.p2_sets[1], self.p2_sets[2], self.p2_sets[3], self.p2_sets[4]]
+                return lisreturn
+
+    def winer(self, jugador, set_num, points1, points2):
+        ganador=1
+        if self.p1 == jugador:
+            self.p1_wins = self.p1_wins + ganador
+            self.p1_sets[set_num - 1] = points1 + '-' + points2
+            self.p2_sets[set_num - 1] = points2 + '-' + points1
+
         else:
-            return "{0} defeated {1} | {2}".format(self.p2, self.p1, self.get_points(self.p2))
-
-    def add_points(self, player, set_num, num1, num2):
-        if player == self.p1:
-            self.count_p1 += 1
-            self.score_p1[set_num - 1] = num1
-            self.score_p2[set_num - 1] = num2
-        else:
-            self.count_p2 += 1
-            self.score_p1[set_num - 1] = num2
-            self.score_p2[set_num - 1] = num1
-
-    def get_points(self, player):
-
-        points = ""
-        total = self.count_p1 + self.count_p2
-        i = 0
-
-        while i < total:
-            if player == self.p1:
-                points += str(self.score_p1[i]) + \
-                    "-" + str(self.score_p2[i]) + ", "
-            else:
-                points += str(self.score_p2[i]) + \
-                    "-" + str(self.score_p1[i]) + ", "
-            i += 1
-        return points[:-2]
+            self.p2_wins = self.p2_wins + ganador
+            self.p2_sets[set_num - 1] = points1 + '-' + points2
+            self.p1_sets[set_num - 1] = points2 + '-' + points1
